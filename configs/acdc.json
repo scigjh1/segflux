@@ -1,0 +1,32 @@
+{
+  "train": {
+    "script": "scripts/acdc/train.py",
+    "args": {
+      "model": "segflux_light",
+      "data_root": "data/acdc",
+      "protocol": "data/acdc/protocol.json",
+      "output_dir": "runs/acdc",
+      "patch_size": "32,256,224",
+      "target_spacing": "5.0,1.5625,1.5625",
+      "batch_size": 2,
+      "max_updates": 60000,
+      "warmup_updates": 1000,
+      "val_interval": 3000,
+      "learning_rate": 0.0002,
+      "weight_decay": 1e-05,
+      "sdf_truncation_mm": 20.0,
+      "device": "cuda:0",
+      "seed": 42
+    }
+  },
+  "evaluate": {
+    "script": "scripts/acdc/evaluate.py",
+    "args": {
+      "checkpoint": "runs/acdc/best_validation.pt",
+      "data_root": "data/acdc",
+      "protocol": "data/acdc/protocol.json",
+      "output_dir": "runs/acdc/heldout",
+      "device": "cuda:0"
+    }
+  }
+}

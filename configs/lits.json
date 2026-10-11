@@ -1,0 +1,30 @@
+{
+  "train": {
+    "script": "scripts/lits/train.py",
+    "args": {
+      "split_file": "data/lits/fold0.json",
+      "data_root": "data/lits",
+      "output_dir": "runs/lits/fold0",
+      "model_size": "light",
+      "patch_size": "96,160,160",
+      "batch_size": 2,
+      "max_updates": 60000,
+      "warmup_updates": 1000,
+      "val_interval": 3000,
+      "learning_rate": 0.0002,
+      "weight_decay": 1e-05,
+      "sdf_truncation_mm": 20.0,
+      "device": "cuda:0",
+      "seed": 42
+    }
+  },
+  "evaluate": {
+    "script": "scripts/lits/evaluate.py",
+    "args": {
+      "checkpoint": "runs/lits/fold0/best_internal_macro_dice.pt",
+      "resolved_splits": "runs/lits/fold0/resolved_splits.json",
+      "output_dir": "runs/lits/fold0/outer_test",
+      "device": "cuda:0"
+    }
+  }
+}

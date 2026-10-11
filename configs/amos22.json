@@ -1,0 +1,32 @@
+{
+  "train": {
+    "script": "scripts/amos22/train.py",
+    "args": {
+      "split_file": "data/amos22/split.json",
+      "output_dir": "runs/amos22",
+      "foreground_label_value": 6,
+      "patch_size": "96,256,256",
+      "batch_size": 2,
+      "max_updates": 60000,
+      "warmup_updates": 1000,
+      "val_interval": 3000,
+      "joint_direct_lr": 0.0002,
+      "flux_lr": 0.0001,
+      "weight_decay": 1e-05,
+      "sdf_truncation_mm": 20.0,
+      "device": "cuda:0",
+      "seed": 42
+    }
+  },
+  "evaluate": {
+    "script": "scripts/amos22/evaluate.py",
+    "args": {
+      "checkpoint": "runs/amos22/best_raw_dice.pt",
+      "split_file": "data/amos22/split.json",
+      "split_name": "test",
+      "role": "outer_test",
+      "output_dir": "runs/amos22/outer_test",
+      "device": "cuda:0"
+    }
+  }
+}
